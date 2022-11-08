@@ -35,18 +35,48 @@ test("GET /planets", async () => {
     expect(response.body).toEqual(planets);
 });
 
-test("POST /planets", async () => {
-    const planet = {
-        name: "Mercury",
-        diameter: 1234,
-        moons: 12,
-    };
+describe("POST /planets", () => {
+    test("Valid request", async () => {
+        const planet = {
+            id: 3,
+            name: "Mercury",
+            description: null,
+            diameter: 1234,
+            moons: 12,
+        };
 
-    const response = await request
-        .post("/planets")
-        .send(planet)
-        .expect(201)
-        .expect("Content-Type", /application\/json/);
+        //@ts-ignore
+        prismaMock.planet.create.mockResolvedValue(planet);
 
-    expect(response.body).toEqual(planet);
+        const response = await request
+            .post("/planets")
+            .send({
+                name: "Mercury",
+                diameter: 1234,
+                moons: 12,
+            })
+            .expect(201)
+            .expect("Content-Type", /application\/json/);
+
+        expect(response.body).toEqual(planet);
+    });
+
+    test("Invalid request", async () => {
+        const planet = {
+            diameter: 1234,
+            moons: 12,
+        };
+
+        const response = await request
+            .post("/planets")
+            .send(planet)
+            .expect(422)
+            .expect("Content-Type", /application\/json/);
+
+        expect(response.body).toEqual({
+            errors: {
+                body: expect.any(Array),
+            },
+        });
+    });
 });

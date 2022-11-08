@@ -1,0 +1,386 @@
+FAIL src/routes/planets.test.ts (97.255 s)
+  GET /
+    ✕ Valid request (94 ms)
+  GET /planets
+    ✕ Valid request (5001 ms)
+  GET /planets/:id
+    ✕ Valid request (5004 ms)
+    ✕ Planet does not exist (5003 ms)
+    ✕ Invalid planet ID (5005 ms)
+  POST /planets
+    ✕ Valid request (5005 ms)
+    ✕ Invalid request (5005 ms)
+  PUT /planets/:id
+    ✕ Valid request (5004 ms)
+    ✕ Invalid request (5005 ms)
+    ✕ Planet does not exist (5004 ms)
+    ✕ Invalid planet ID (5004 ms)
+  DELETE /planets/:id
+    ✕ Valid request (5002 ms)
+    ✕ Planet does not exist (5003 ms)
+    ✕ Invalid planet ID (5004 ms)
+  POST /planets/:id/photo
+    ✕ Valid request with PNG file upload (5003 ms)
+    ✕ Valid request with JPG file upload (5003 ms)
+    ✕ Invalid request with text file upload (5003 ms)
+    ✕ Planet does not exist (5009 ms)
+    ✕ Invalid planet ID (5008 ms)
+    ✕ Invalid request with no file upload (5003 ms)
+
+  ● GET / › Valid request
+
+    expected "Access-Control-Allow-Origin" header field
+
+      10 |       .get("/")
+      11 |       .expect(200)
+    > 12 |       .expect("Access-Control-Allow-Origin", "http://localhost:8080");
+         |        ^
+      13 |
+      14 |     expect(res.text).toBe("This is the Space Facts API!");
+      15 |   });
+
+      at src/routes/planets.test.ts:12:8
+      at src/routes/planets.test.ts:8:71
+      at Object.<anonymous>.__awaiter (src/routes/planets.test.ts:4:12)
+      at Object.<anonymous> (src/routes/planets.test.ts:8:36)
+      ----
+      at Test._assertHeader (node_modules/supertest/lib/test.js:224:47)
+      at node_modules/supertest/lib/test.js:306:17
+      at Test._assertFunction (node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (node_modules/supertest/lib/test.js:120:14)
+
+  ● GET /planets › Valid request
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      17 |
+      18 | describe("GET /planets", () => {
+    > 19 |   test("Valid request", async () => {
+         |   ^
+      20 |     const planets = [
+      21 |       {
+      22 |         id: 1,
+
+      at src/routes/planets.test.ts:19:3
+      at Object.<anonymous> (src/routes/planets.test.ts:18:1)
+
+  ● GET /planets/:id › Valid request
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      53 |
+      54 | describe("GET /planets/:id", () => {
+    > 55 |   test("Valid request", async () => {
+         |   ^
+      56 |     const planet = {
+      57 |       id: 1,
+      58 |       name: "Mercury",
+
+      at src/routes/planets.test.ts:55:3
+      at Object.<anonymous> (src/routes/planets.test.ts:54:1)
+
+  ● GET /planets/:id › Planet does not exist
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      75 |   });
+      76 |
+    > 77 |   test("Planet does not exist", async () => {
+         |   ^
+      78 |     // @ts-ignore
+      79 |     prismaMock.planet.findUnique.mockResolvedValue(null);
+      80 |
+
+      at src/routes/planets.test.ts:77:3
+      at Object.<anonymous> (src/routes/planets.test.ts:54:1)
+
+  ● GET /planets/:id › Invalid planet ID
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      87 |   });
+      88 |
+    > 89 |   test("Invalid planet ID", async () => {
+         |   ^
+      90 |     const res = await req
+      91 |       .get("/planets/asdf")
+      92 |       .expect(404)
+
+      at src/routes/planets.test.ts:89:3
+      at Object.<anonymous> (src/routes/planets.test.ts:54:1)
+
+  ● POST /planets › Valid request
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+       98 |
+       99 | describe("POST /planets", () => {
+    > 100 |   test("Valid request", async () => {
+          |   ^
+      101 |     const planet = {
+      102 |       id: 3,
+      103 |       name: "Mercury",
+
+      at src/routes/planets.test.ts:100:3
+      at Object.<anonymous> (src/routes/planets.test.ts:99:1)
+
+  ● POST /planets › Invalid request
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      126 |   });
+      127 |
+    > 128 |   test("Invalid request", async () => {
+          |   ^
+      129 |     const planet = {
+      130 |       diameter: 1234,
+      131 |       moons: 12,
+
+      at src/routes/planets.test.ts:128:3
+      at Object.<anonymous> (src/routes/planets.test.ts:99:1)
+
+  ● PUT /planets/:id › Valid request
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      147 |
+      148 | describe("PUT /planets/:id", () => {
+    > 149 |   test("Valid request", async () => {
+          |   ^
+      150 |     const planet = {
+      151 |       id: 3,
+      152 |       name: "Mercury",
+
+      at src/routes/planets.test.ts:149:3
+      at Object.<anonymous> (src/routes/planets.test.ts:148:1)
+
+  ● PUT /planets/:id › Invalid request
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      176 |   });
+      177 |
+    > 178 |   test("Invalid request", async () => {
+          |   ^
+      179 |     const planet = {
+      180 |       diameter: 1234,
+      181 |       moons: 12,
+
+      at src/routes/planets.test.ts:178:3
+      at Object.<anonymous> (src/routes/planets.test.ts:148:1)
+
+  ● PUT /planets/:id › Planet does not exist
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      195 |   });
+      196 |
+    > 197 |   test("Planet does not exist", async () => {
+          |   ^
+      198 |     // @ts-ignore
+      199 |     prismaMock.planet.update.mockRejectedValue(new Error("Error"));
+      200 |
+
+      at src/routes/planets.test.ts:197:3
+      at Object.<anonymous> (src/routes/planets.test.ts:148:1)
+
+  ● PUT /planets/:id › Invalid planet ID
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      213 |   });
+      214 |
+    > 215 |   test("Invalid planet ID", async () => {
+          |   ^
+      216 |     const res = await req
+      217 |       .put("/planets/asdf")
+      218 |       .send({
+
+      at src/routes/planets.test.ts:215:3
+      at Object.<anonymous> (src/routes/planets.test.ts:148:1)
+
+  ● DELETE /planets/:id › Valid request
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      230 |
+      231 | describe("DELETE /planets/:id", () => {
+    > 232 |   test("Valid request", async () => {
+          |   ^
+      233 |     const res = await req
+      234 |       .delete("/planets/1")
+      235 |       .expect(204)
+
+      at src/routes/planets.test.ts:232:3
+      at Object.<anonymous> (src/routes/planets.test.ts:231:1)
+
+  ● DELETE /planets/:id › Planet does not exist
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      239 |   });
+      240 |
+    > 241 |   test("Planet does not exist", async () => {
+          |   ^
+      242 |     // @ts-ignore
+      243 |     prismaMock.planet.delete.mockRejectedValue(new Error("Error"));
+      244 |
+
+      at src/routes/planets.test.ts:241:3
+      at Object.<anonymous> (src/routes/planets.test.ts:231:1)
+
+  ● DELETE /planets/:id › Invalid planet ID
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      251 |   });
+      252 |
+    > 253 |   test("Invalid planet ID", async () => {
+          |   ^
+      254 |     const res = await req
+      255 |       .delete("/planets/asdf")
+      256 |       .expect(404)
+
+      at src/routes/planets.test.ts:253:3
+      at Object.<anonymous> (src/routes/planets.test.ts:231:1)
+
+  ● POST /planets/:id/photo › Valid request with PNG file upload
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      267 |
+      268 | describe("POST /planets/:id/photo", () => {
+    > 269 |   test("Valid request with PNG file upload", async () => {
+          |   ^
+      270 |     await req
+      271 |       .post("/planets/23/photo")
+      272 |       .attach("photo", "test-fixtures/photos/file.png")
+
+      at src/routes/planets.test.ts:269:3
+      at Object.<anonymous> (src/routes/planets.test.ts:268:1)
+
+  ● POST /planets/:id/photo › Valid request with JPG file upload
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      275 |   });
+      276 |
+    > 277 |   test("Valid request with JPG file upload", async () => {
+          |   ^
+      278 |     await req
+      279 |       .post("/planets/23/photo")
+      280 |       .attach("photo", "test-fixtures/photos/file.jpg")
+
+      at src/routes/planets.test.ts:277:3
+      at Object.<anonymous> (src/routes/planets.test.ts:268:1)
+
+  ● POST /planets/:id/photo › Invalid request with text file upload
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      283 |   });
+      284 |
+    > 285 |   test("Invalid request with text file upload", async () => {
+          |   ^
+      286 |     const res = await req
+      287 |       .post("/planets/23/photo")
+      288 |       .attach("photo", "test-fixtures/photos/file.txt")
+
+      at src/routes/planets.test.ts:285:3
+      at Object.<anonymous> (src/routes/planets.test.ts:268:1)
+
+  ● POST /planets/:id/photo › Planet does not exist
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      295 |   });
+      296 |
+    > 297 |   test("Planet does not exist", async () => {
+          |   ^
+      298 |     // @ts-ignore
+      299 |     prismaMock.planet.update.mockRejectedValue(new Error("Error"));
+      300 |
+
+      at src/routes/planets.test.ts:297:3
+      at Object.<anonymous> (src/routes/planets.test.ts:268:1)
+
+  ● POST /planets/:id/photo › Invalid planet ID
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      308 |   });
+      309 |
+    > 310 |   test("Invalid planet ID", async () => {
+          |   ^
+      311 |     const res = await req
+      312 |       .post("/planets/asdf/photo")
+      313 |       .expect(404)
+
+      at src/routes/planets.test.ts:310:3
+      at Object.<anonymous> (src/routes/planets.test.ts:268:1)
+
+  ● POST /planets/:id/photo › Invalid request with no file upload
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Use jest.setTimeout(newTimeout) to increase the timeout value, if this is a long-running test."
+
+      317 |   });
+      318 |
+    > 319 |   test("Invalid request with no file upload", async () => {
+          |   ^
+      320 |     const res = await req
+      321 |       .post("/planets/23/photo")
+      322 |       .expect(400)
+
+      at src/routes/planets.test.ts:319:3
+      at Object.<anonymous> (src/routes/planets.test.ts:268:1)
+
+PASS src/lib/middleware/multer.test.ts
+  generatePhotoFilename
+    ✓ Generates filename with correct extension when passed mimeType 'image/png' (4 ms)
+    ✓ Generates filename with correct extension when passed mimeType 'image/jpeg' (2 ms)
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       20 failed, 2 passed, 22 total
+Snapshots:   0 total
+Time:        97.495 s, estimated 98 s
+Ran all test suites.
+
+Jest has detected the following 1 open handle potentially keeping Jest from exiting:
+
+  ●  TCPSERVERWRAP
+
+      43 |
+      44 |     const res = await req
+    > 45 |       .get("/planets")
+         |        ^
+      46 |       .expect(200)
+      47 |       .expect("Content-Type", /application\/json/)
+      48 |       .expect("Access-Control-Allow-Origin", "http://localhost:8080");
+
+      at Test.serverAddress (node_modules/supertest/lib/test.js:48:35)
+      at new Test (node_modules/supertest/lib/test.js:34:14)
+      at Object.obj.<computed> [as get] (node_modules/supertest/index.js:28:14)
+      at src/routes/planets.test.ts:45:8
+      at src/routes/planets.test.ts:8:71
+      at Object.<anonymous>.__awaiter (src/routes/planets.test.ts:4:12)
+      at Object.<anonymous> (src/routes/planets.test.ts:19:36)

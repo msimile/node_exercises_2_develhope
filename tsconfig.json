@@ -1,9 +1,14 @@
 {
-  "compilerOptions": {
-    "sourceMap": true,
-    "outDir": "dist",
-    "strict": true,
-    "lib": ["esnext"],
-    "esModuleInterop": true
-  }
+    "extends": "@tsconfig/node16/tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./dist",
+        "sourceMap": true
+    },
+    "include": [
+        "./src/**/*.ts",
+        "src/server.test.mjs",
+        "src/server.mjs",
+        "src/app.mjs"
+    ],
+    "exclude": ["./src/**/*.test.ts"]
 }
